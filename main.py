@@ -4,6 +4,8 @@
 3 - print all no-essay scholarships
 """
 
-from src.discovery import known
+from careerstop import discovery
+from eligibility import validation
 
-known.bold()
+discovery("september")
+validation()
