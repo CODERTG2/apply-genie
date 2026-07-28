@@ -1,7 +1,7 @@
 # Apply Genie Backend
 A data extraction and classification backend that scrapes scholarships and uses LLMs to categorize their eligibility requirements.
 
-**[🔗 View the Frontend Repository](https://github.com/tanmaygarg/apply-genie-website)**
+**[🔗 View the Frontend Repository](https://github.com/codertg2/apply-genie-website)**
 
 ## Quick Start
 
