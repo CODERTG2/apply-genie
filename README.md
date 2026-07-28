@@ -1,9 +1,4 @@
-# apply-genie
+# Apply Genie
 
-Phase 0.5 - gather no essay scholarships
-
-Phase 1 - apply to no essay scholarships
-
-Phase 2 - tag and store all scholarships
-
-Phase 3 - build a website for others to use tagged data
+This repository contains the backend for Apply Genie. 
+The website code can be found in the `apply-genie-website` repository.
