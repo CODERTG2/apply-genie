@@ -460,7 +460,7 @@ if __name__ == "__main__":
     from dotenv import load_dotenv
     load_dotenv()
     parser = argparse.ArgumentParser(description="Classify scholarships into structured attributes")
-    parser.add_argument("--file", default="scholarships.json", help="Scholarships JSON file")
+    parser.add_argument("--file", default="current_scholarships.json", help="Scholarships JSON file")
     parser.add_argument("--model", default="gemini-3.5-flash-lite", help="LLM model name")
     parser.add_argument("--api-key", default=os.getenv("GEMINI", ""), help="API key")
     parser.add_argument("--evolution-interval", type=int, default=50, help="Schema evolution interval")
