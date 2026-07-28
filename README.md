@@ -1,9 +1,6 @@
 # Apply Genie Backend
 A data extraction and classification backend that scrapes scholarships and uses LLMs to categorize their eligibility requirements.
 
-![Apply Genie Architecture / Demo Placeholder](https://via.placeholder.com/800x400?text=Apply+Genie+Hero+Image+Here)
-*(Note: Replace the placeholder image above with a real screenshot, GIF, or architecture diagram of the backend in action!)*
-
 **[🔗 View the Frontend Repository](https://github.com/tanmaygarg/apply-genie-website)**
 
 ## Quick Start
@@ -34,7 +31,7 @@ uv run src/careerstop.py
 ### Environment Variables
 Create a `.env` file in the root directory and add your Google API key:
 ```env
-GEMINI_API_KEY=your_api_key_here
+GEMINI=your_api_key_here
 ```
 
 ### Execution Steps
