@@ -119,7 +119,7 @@ def delete_by_ids(conn, ids: list[int]) -> None:
     if not ids:
         return
     placeholders = ",".join("?" * len(ids))
-    conn.execute(f"DELETE FROM scholarships WHERE id IN ({placeholders})", ids)
+    conn.execute(f"DELETE FROM scholarships WHERE id IN ({placeholders})", tuple(ids))
     conn.commit()
 
 
