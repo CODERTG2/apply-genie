@@ -6,17 +6,16 @@ structured user answers. Questions are presented in order, with branching
 based on depends_on conditions.
 """
 
+import sys
+from pathlib import Path
+
+# Ensure src root is in sys.path
+_SRC_ROOT = Path(__file__).resolve().parent.parent
+if str(_SRC_ROOT) not in sys.path:
+    sys.path.insert(0, str(_SRC_ROOT))
+
 import json
-
-
-def load_schema():
-    with open("attribute_schema.json", "r", encoding="utf-8") as f:
-        return json.load(f)
-
-
-def load_entity_db():
-    with open("entity_db.json", "r", encoding="utf-8") as f:
-        return json.load(f)
+from core.schemas import load_schema, load_entity_db
 
 
 def check_dependency(depends_on, user_profile):

@@ -15,3 +15,7 @@ entity_db.json
 models.txt
 Questions.md
 scholarships_test.json
+*.json
+.tmp/
+data
+.artifacts

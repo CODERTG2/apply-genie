@@ -1,3 +1,18 @@
+Metadata-Version: 2.4
+Name: apply-genie
+Version: 0.1.0
+Summary: Add your description here
+Requires-Python: >=3.12
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: google-genai>=2.14.0
+Requires-Dist: libsql-experimental>=0.0.55
+Requires-Dist: openai>=2.50.0
+Requires-Dist: playwright>=1.61.0
+Requires-Dist: python-dotenv>=1.2.2
+Requires-Dist: tqdm>=4.70.0
+Dynamic: license-file
+
 # Scholarship HQ Backend Pipeline
 
 A data extraction and classification backend that scrapes scholarships from CareerOneStop and uses a hybrid LLM approach (local + Gemini) to categorize their eligibility requirements into a structured Turso database.
@@ -14,12 +29,12 @@ uv sync
 uv run playwright install webkit
 
 # Run the unified scholarship pipeline (Scrape → Filter → Classify → Dates → Rephrase → Upload)
-uv run src/pipeline.py --start-month july --end-month september
+uv run python -m src.pipeline.pipeline --start-month july --end-month september
 ```
 
 ## Features
 
-*   **End-to-End Orchestration**: A single unified pipeline (`src/pipeline.py`) that manages the entire lifecycle of a scholarship from raw HTML scrape to finalized Turso database row.
+*   **End-to-End Orchestration**: A single unified pipeline (`pipeline.py`) that manages the entire lifecycle of a scholarship from raw HTML scrape to finalized Turso database row.
 *   **Hybrid LLM Engine**: 
     *   **Local LLM (LM Studio)**: Used for high-volume, low-complexity tasks like verifying URLs, extracting deadline dates, and rephrasing requirements to save on API costs.
     *   **Gemini API**: Used for complex 3-step reasoning to decompose convoluted eligibility criteria into strict JSON structures.
@@ -57,10 +72,10 @@ ENCRYPTION_KEY=your_encryption_key
 2. **Run the pipeline:**
    ```bash
    # Run a dry-run test on a maximum of 3 items without hitting the database
-   uv run src/pipeline.py --start-month july --end-month september --max-classify 3 --dry-run
+   uv run python -m src.pipeline.pipeline --start-month july --end-month september --max-classify 3 --dry-run
    
    # Run the full production pipeline
-   uv run src/pipeline.py --start-month july --end-month september
+   uv run python -m src.pipeline.pipeline --start-month july --end-month september
    ```
 
 ## How it works

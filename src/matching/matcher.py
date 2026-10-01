@@ -6,6 +6,14 @@ requirements are met by the user's profile.
 No strict disqualification — higher percentage = better match.
 """
 
+import sys
+from pathlib import Path
+
+# Ensure project root is in sys.path
+_PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
+if str(_PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(_PROJECT_ROOT))
+
 import json
 
 def load_scholarships(filename="scholarships.json"):

@@ -1,3 +1,18 @@
+'''
+Legacy Experiment: dates.py (Root Version)
+
+Purpose:
+An early script to extract deadline dates using a local LLM (meta-llama-3.1-8b-instruct) via LM Studio.
+
+Capabilities:
+- Read a monolithic JSON file of scholarships.
+- Used a basic prompt to extract just the Date string, assuming the current year if missing.
+
+What it lacked:
+- Modified a massive JSON file directly rather than operating on a stream or pipeline of individual items.
+- Lacked robust error handling.
+- The core logic was eventually refactored and moved into `src/steps/dates.py`.
+'''
 from openai import OpenAI
 import json
 from tqdm import tqdm
@@ -11,10 +26,9 @@ client = OpenAI(
     api_key="lm-studio"
 )
 
-with open("current_scholarships.json", "r", encoding="utf-8") as f:
+with open("dry_run_classifications.json", "r", encoding="utf-8") as f:
     scholarships = json.load(f)
 
-counter = 0
 for scholarship in tqdm(scholarships):
     prompt = f"""
         Extract the deadline from the scholarship. Return ONLY the date. Structure it as the month date, year.
@@ -48,5 +62,5 @@ for scholarship in tqdm(scholarships):
     date = completion.choices[0].message.content
     scholarship["Deadline_Date"] = date
 
-    with open("current_scholarships.json", "w", encoding="utf-8") as f:
+    with open("dry_run_classifications.json", "w", encoding="utf-8") as f:
         json.dump(scholarships, f, ensure_ascii=False, indent=4)

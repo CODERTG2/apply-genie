@@ -1,3 +1,18 @@
+'''
+Legacy Experiment: classify.py
+
+Purpose:
+Early iteration of the classification prompt, focused on structuring scholarship requirements using a predefined JSON schema.
+
+Capabilities:
+- Used Google GenAI SDK directly.
+- Attempted to handle multi-select, booleans, numeric ranges, and free text based on `attribute_schema.json`.
+
+What it lacked:
+- Did not use Pydantic for structured outputs, relying on raw JSON strings which made output parsing brittle.
+- Did not handle submission requirements or selection criteria robustly.
+- Monolithic structure that was hard to integrate into a pipeline.
+'''
 import json
 import re
 import os
@@ -97,17 +112,19 @@ CRITICAL RULES:
    - "category_hint": a short category label for grouping similar requirements
    - "source_text": the original text from the scholarship
 
-5. For any new entities discovered (organizations, schools, test types, medical conditions, fields),
+6. DO NOT create attributes or specific_requirements for SUBMISSION materials (e.g., must submit an essay, transcript, letters of recommendation) or SELECTION criteria (e.g., "applications will be judged on leadership"). We ONLY want ELIGIBILITY requirements (factors that determine if a person is allowed to apply).
+
+7. For any new entities discovered (organizations, schools, test types, medical conditions, fields),
    add them to "new_entities" grouped by entity type.
 
-5b. `visa_type` is a DEPENDENT field — only set it when the scholarship explicitly names a specific visa type
+8. `visa_type` is a DEPENDENT field — only set it when the scholarship explicitly names a specific visa type
     (e.g., "F-1", "J-1", "H-4"). If the scholarship only says "valid student visa" or "hold a visa" without
     naming the type, omit `visa_type` entirely. The `citizenship_status: ["US Visa Holder"]` is sufficient.
     Correct:   scholarship says "F-1 student visa" → visa_type: "F-1 (Student)"
     Correct:   scholarship says "valid student visa" → omit visa_type
     Incorrect: scholarship says "valid student visa" → visa_type: "Other"
 
-6. If the scholarship does not specify a requirement for an attribute, omit it (don't set to null).
+9. If the scholarship does not specify a requirement for an attribute, omit it (don't set to null).
 
 Return ONLY valid JSON with this structure (no markdown, no explanation):
 {{

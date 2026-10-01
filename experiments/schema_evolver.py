@@ -1,3 +1,16 @@
+'''
+Legacy Experiment: schema_evolver.py
+
+Purpose:
+An experimental script designed to dynamically evolve the data schema by analyzing edge cases.
+
+Capabilities:
+- Iterates over the "SpecificRequirements" catch-all bucket of processed scholarships.
+- Uses Gemini to find common patterns and propose new structured attributes (e.g., discovering a recurring need for a "sports_team" attribute).
+
+What it lacked:
+- Schema changes currently require manual review and migration logic; this script was an exploratory proof-of-concept for automating that process.
+'''
 import json
 from collections import Counter
 from google import genai

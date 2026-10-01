@@ -1,3 +1,19 @@
+'''
+Legacy Experiment: careerstop.py
+
+Purpose:
+An experimental scraper specifically designed to extract data from CareerOneStop.
+
+Capabilities:
+- Uses Playwright to paginate through CareerOneStop's scholarship table.
+- Visits individual detail pages and extracts basic fields (Title, Link, and table rows).
+
+What it lacked:
+- Extremely slow due to synchronous playwright usage and deep page navigation.
+- Prone to timeouts and anti-bot blocking.
+- Failed to extract the deep, unstructured text needed for the LLM pipeline, capturing mostly shallow table data.
+- Abandoned in favor of a faster, more robust scraping approach.
+'''
 from playwright.sync_api import sync_playwright, TimeoutError as PlaywrightTimeoutError
 import json
 import os
